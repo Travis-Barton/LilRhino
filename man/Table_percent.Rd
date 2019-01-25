@@ -30,9 +30,7 @@ Table_percent(in_table)
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+
 \examples{
 
 true <- rep(1:10, 10)

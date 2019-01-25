@@ -4,10 +4,15 @@ Title: For Travis' Personal Functions
 Version: 0.1.0
 Author: Travis Barton
 Maintainer: Travis Barton <travis.barton@sjsu.edu>
-Description: This is just for my purposes.
+Description: This is a package for both, helpful functions and a monty hall simulator, and for implementing the Feed_Network variable reduction technique.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Imports:
   FNN,
-  beepr
+  beepr,
+  ggplot2,
+  reshape2,
+  keras,
+  dplyr,
+  e1071

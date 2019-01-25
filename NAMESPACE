@@ -1,1 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+import(ggplot2)
+import(keras)
+import(dplyr)
+import(e1071)

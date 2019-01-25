@@ -1,26 +1,27 @@
-\name{Percent}
-\alias{Percent}
+\name{Monty_Hall}
+\alias{Monty_Hall}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Percent of confusion matrix
+\title{ Monty Hall Simulator
 %%  ~~function to do ... ~~
 }
-\description{ For finding the accuracy of confusion matricies with true/pred values
+\description{ A simulator for the famous Monty Hall Problem
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-Percent(true, test)
+Monty_Hall(Games = 10, Choice = "Stay")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{true}{ The true values
+  \item{Games}{ The number of games to run on the simulation
 %%     ~~Describe \code{x} here~~
 }
-  \item{test}{the test values}
+  \item{Choice}{Wether you would like the simulation to either 'Stay' with the first chosen door, 'Switch' to the other door, or 'Random' where you randomly decide to either stay or switch.
+  }
 }
-\details{ Make sure your strings have the right values and create a square matrix.
+\details{ This is just a toy example of the famous Monty Hall problem. It returns a ggplot bar chart showing the counts for wins or loses in the simulation.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{ the percent acc.
+\value{ A ggplot graph is produced. There is no return value.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -33,16 +34,8 @@ Percent(true, test)
 }
 
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
 \examples{
-true <- rep(1:10, 10)
-test <- rep(1:10, 10)
-test[c(2, 22, 33, 89)] = 1
-Percent(true, test)
-#or
-#percent(table(true, test))
+Monty_Hall(100, 'Stay')
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
