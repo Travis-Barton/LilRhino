@@ -1,10 +1,10 @@
 Package: LilRhino
 Type: Package
-Title: For Travis' Personal Functions
+Title: For Implementation of Feed Networks and Other Things 
 Version: 0.1.0
-Author: Travis Barton
+Author: Travis Barton (2018) http://wbbpredictions.com/wp-content/uploads/2018/12/Redditbot_Paper.pdf
 Maintainer: Travis Barton <travis.barton@sjsu.edu>
-Description: This is a package for both, helpful functions and a monty hall simulator, and for implementing the Feed_Network variable reduction technique.
+Description: This is for helpful functions, a monty hall simulator, and for implementing my own variable reduction technique.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

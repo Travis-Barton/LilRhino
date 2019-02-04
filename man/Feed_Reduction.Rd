@@ -5,6 +5,7 @@
 %%  ~~function to do ... ~~
 }
 \description{It takes the number of unique labels in the training data and tries to predict a one vs all binary neural network for each unique label. The output is an approximation of the probability that each individual input does not not match the label.
+Travis Barton (2018) http://wbbpredictions.com/wp-content/uploads/2018/12/Redditbot_Paper.pdf
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -43,28 +44,26 @@ Feed_Reduction(X, Y, X_test, val_split = .1,
 }
 \examples{
 #Feed Network Testing
-library(keras)
-dat <- keras::dataset_mnist()
-X_train = array_reshape(dat$train$x/255, c(nrow(dat$train$x/255), 784))
-y_train = dat$train$y
-X_test = array_reshape(dat$test$x/255, c(nrow(dat$test$x/255), 784))
-y_test = dat$test$y
+#library(keras)
+#dat <- keras::dataset_mnist()
+#X_train = array_reshape(dat$train$x/255, c(nrow(dat$train$x/255), 784))
+#y_train = dat$train$y
+#X_test = array_reshape(dat$test$x/255, c(nrow(dat$test$x/255), 784))
+#y_test = dat$test$y
 
-Reduced_Data2 = Feed_Reduction(X_train, y_train, X_test,
-                              val_split = .3, nodes = 350,
-                              30, 50, verbose = 1)
+#Reduced_Data2 = Feed_Reduction(X_train, y_train, X_test,
+#                              val_split = .3, nodes = 350,
+#                              30, 50, verbose = 1)
 
-library(e1071)
-names(Reduced_Data2$test) = names(Reduced_Data2$train)
-newdat = as.data.frame(cbind(rbind(Reduced_Data2$train, Reduced_Data2$test), c(y_train, y_test)))
-colnames(newdat) = c(paste("V", c(1:11), sep = ""))
-mod = svm(V11~., data = newdat, subset = c(1:60000),
-          kernel = 'linear', cost = 1, type = 'C-classification')
-preds = predict(mod, newdat[60001:70000,-11])
-sum(preds == y_test)/10000
+#library(e1071)
+#names(Reduced_Data2$test) = names(Reduced_Data2$train)
+#newdat = as.data.frame(cbind(rbind(Reduced_Data2$train, Reduced_Data2$test), c(y_train, y_test)))
+#colnames(newdat) = c(paste("V", c(1:11), sep = ""))
+#mod = svm(V11~., data = newdat, subset = c(1:60000),
+#         kernel = 'linear', cost = 1, type = 'C-classification')
+#preds = predict(mod, newdat[60001:70000,-11])
+#sum(preds == y_test)/10000
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
