@@ -21,7 +21,7 @@ Cross_val_maker <- function(data, alpha)
   return(list("Train" = as.data.frame(train), "Test" = as.data.frame(test)))
 }
 
-Codes_done <- function(title = "Codes Done", msg = " ", sound = FALSE)
+Codes_done <- function(title = "Codes Done", msg = " ", sound = FALSE, effect = 1)
 {
   theTitle <- title
   theMsg <- msg
@@ -48,7 +48,7 @@ Codes_done <- function(title = "Codes Done", msg = " ", sound = FALSE)
 
   if(sound == T)
   {
-    beepr::beep()
+    beepr::beep(effect)
   }
 }
 

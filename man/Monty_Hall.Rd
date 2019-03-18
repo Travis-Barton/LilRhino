@@ -37,4 +37,3 @@ Monty_Hall(Games = 10, Choice = "Stay")
 \examples{
 Monty_Hall(100, 'Stay')
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the

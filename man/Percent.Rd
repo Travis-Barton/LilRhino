@@ -44,5 +44,3 @@ Percent(true, test)
 #or
 #percent(table(true, test))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

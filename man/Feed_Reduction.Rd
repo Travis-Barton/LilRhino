@@ -66,5 +66,3 @@ preds = predict(mod, newdat[60001:70000,-11])
 sum(preds == y_test)/10000
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

@@ -38,5 +38,3 @@ test <- rep(1:10, 10)
 test[c(2, 22, 33, 89)] = 1
 Table_percent(table(true, test))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

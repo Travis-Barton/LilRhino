@@ -83,7 +83,6 @@ Binary_Network(X, Y, X_test, val_split, nodes, epochs, batch_size, verbose = 0)
   }
 }
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{NeuralNetwork}% use one of  RShowDoc("KEYWORDS")
-\keyword{FeedNetwork}% __ONLY ONE__ keyword per line
+
+\keyword{NeuralNetwork}
+\keyword{FeedNetwork}

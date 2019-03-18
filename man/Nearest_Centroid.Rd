@@ -20,9 +20,7 @@ Nearest_Centroid(X_train, X_test, Y_train)
 }
 
 \author{ Travis Barton
-%%  ~~who you are~~
 }
 \note{ Based on homework from Guangling Chen's M251 class at SJSU
-%%  ~~further notes~~
 }
 

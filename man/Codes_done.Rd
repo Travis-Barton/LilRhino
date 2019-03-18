@@ -8,15 +8,15 @@
 
 }
 \usage{
-Codes_done(title, msg, sound = FALSE)
+Codes_done(title, msg, sound = FALSE, effect = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{title}{ The title of the notification}
   \item{msg}{ The message to be sent}
-  \item{sound}{ Optional sound to blurt as well
+  \item{sound}{ Optional sound to blurt as well}
+  \item{effect}{ If sound it blurted, what should it be? (check beepr package for sound options)}
 %%     ~~Describe \code{x} here~~
-}
 }
 \details{ Only for Linix (as far as I know)
 %%  ~~ If necessary, more details than the description above ~~
@@ -30,7 +30,6 @@ Codes_done(title, msg, sound = FALSE)
 }
 
 \examples{
-Codes_done("done", "check it", sound = TRUE)
+Codes_done("done", "check it", sound = TRUE, effect = 1)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
