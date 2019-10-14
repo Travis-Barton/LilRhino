@@ -288,13 +288,24 @@ Vector_Puller = function(words, emb_matrix, dimension)
   return(ret)
 }
 
-#Make sure that the embeddings matrix is a data frame
-Sentence_Vector = function(Sentences, emb_matrix, dimension, stopwords)
+Sentence_Vector = function(Sentence, emb_matrix, dimension, stopwords)
 {
-  words_list = stringi::stri_extract_all_words(Sentences, simplify = T)
+  words_list = stringi::stri_extract_all_words(Sentence, simplify = T)
   words_list = words_list[-(words_list %in% stopwords)]
   vecs = Vector_Puller(words_list, emb_matrix, dimension)
 
   return(t(vecs))
+}
+
+Load_Glove_Embeddings = function(path = 'glove.42B.300d.txt', d = 300)
+{
+  col_names <- c("term", paste("d", 1:d, sep = ""))
+  dat <- as.data.frame(read_delim(file = path,
+                                  delim = " ",
+                                  quote = "",
+                                  col_names = col_names))
+  rownames(dat) = dat$term
+  dat = dat[,-1]
+  return(dat)
 }
 
