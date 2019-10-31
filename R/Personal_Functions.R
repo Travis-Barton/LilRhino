@@ -1,4 +1,8 @@
 #Travis's Personally Useful Functions:
+utils::globalVariables('words')
+utils::globalVariables('.')
+
+
 Percent <- function(true, test)
 {
   return(sum(diag(table(true, test)))/sum(table(true, test)))
@@ -307,5 +311,75 @@ Load_Glove_Embeddings = function(path = 'glove.42B.300d.txt', d = 300)
   rownames(dat) = dat$term
   dat = dat[,-1]
   return(dat)
+}
+
+Bootstrap_Vocab = function(vocab, N, stopwds, min_length = 7, max_length = 15)
+{
+
+  res = {}
+  sent = ''
+  cutoff = sample(min_length:max_length, 1)
+  while(length(res) < N){
+    sent = paste(sent, vocab[sample(1:length(vocab), 1)] %>%
+                   strsplit(' ') %>%
+                   unlist() %>%
+                   data.frame('words' = ., stringsAsFactors = F) %>%
+                   filter(!(words %in% stopwds)) %>%
+                   sample_n(1), ' ')
+
+    len = strsplit(sent, ' ') %>%
+      unlist() %>%
+      as.data.frame() %>%
+      filter(. != '') %>%
+      nrow()
+
+
+    if(len > cutoff){
+      res = c(res, sent)
+      sent = ''
+      cutoff = sample(min_length:max_length, 1)
+    }
+
+  }
+  return(res)
+} # For one class
+
+Bootstrap_Data_Frame = function(text, tags, stopwords, min_length = 7, max_length = 15)
+{
+  max_tags =floor(1.1*max(table(tags)))
+  newdata = data.frame('text' = text, 'tags' = tags, stringsAsFactors = F)
+  for (tag in unique(tags)) {
+    tag_index = which(tags == tag)
+    num_to_boostrap = max_tags - length(tag_index)
+    new_sents = text[tag_index] %>%
+      Bootstrap_Vocab(num_to_boostrap, stopwords, min_length, max_length)
+
+    new_row = cbind(new_sents, rep(tag, length(new_sents)))
+    new_row = data.frame('text' = new_row[,1], 'tags' = new_row[,2], stringsAsFactors = F)
+    newdata = rbind(newdata, new_row)
+  }
+  newdata$text = as.character(newdata$text)
+  return(newdata)
+} # For the whole database
+
+Random_Brains = function(data, y, x_test, variables = ceiling(ncol(data)/10),  brains = floor(sqrt(ncol(data))), hiddens = c(3, 4))
+{
+  # Data: Dataframe or matrix of values
+  data = as.data.frame(cbind(data, y))
+  colnames(data) = c(paste('V', 1:(ncol(data)-1), sep = ''), 'label')
+  preds = matrix(NA, ncol = brains, nrow = nrow(x_test))
+  final_preds = c()
+  cols = matrix(ncol = variables, nrow = brains)
+  for(i in 1:brains){
+    coldex = sample(1:(ncol(data)-1), variables)
+    cols[i,] = coldex
+    res = neuralnet(label~., data = data[,c(coldex, ncol(data))], hidden = hiddens, linear.output = F)
+    preds[,i] = apply(predict(res, as.matrix(x_test[,coldex])), 1, which.max)
+  }
+  for(i in 1:nrow(preds)){
+    final_preds = c(final_preds, names(head(sort(table(preds[i,])),1)))
+  }
+  return(list('predictions' = final_preds, 'num_brains' = brains, 'predictors_per_brain' = variables,
+              'hidden_layers' = hiddens, 'preds_per_brain' = cols, 'raw_results' = preds))
 }
 
