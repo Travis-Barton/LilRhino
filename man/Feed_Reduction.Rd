@@ -43,7 +43,7 @@ Feed_Reduction(X, Y, X_test, val_split = .1,
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-\donttest{
+\dontrun{
 if(8 * .Machine$sizeof.pointer == 64){
 #Feed Network Testing
 library(keras)

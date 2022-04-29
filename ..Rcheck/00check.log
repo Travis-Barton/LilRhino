@@ -1,0 +1,8 @@
+* using log directory ‘/Users/travisbarton/Documents/GitHub/LilRhino/..Rcheck’
+* using R version 4.1.1 (2021-08-10)
+* using platform: x86_64-apple-darwin17.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘./DESCRIPTION’ ... ERROR
+File DESCRIPTION does not exist
+* DONE
+Status: 1 ERROR

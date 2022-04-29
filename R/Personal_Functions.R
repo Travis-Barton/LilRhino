@@ -222,12 +222,20 @@ Num_Al_Sep = function(vec)
   return(vec)
 }
 
-Pretreatment = function(title_vec, stem = TRUE, lower = TRUE, parallel = F)
+Pretreatment = function(title_vec, stem = TRUE, lower = TRUE, parallel = FALSE)
 {
   Num_Al_Sep = function(vec){
     vec = unlist(strsplit(vec, "(?=[A-Za-z])(?<=[0-9])|(?=[0-9])(?<=[A-Za-z])", perl = TRUE))
     vec = paste(vec, collapse = " ")
     return(vec)
+  }
+  replace_number_conditional = function(string){
+    if("textclean" %in% rownames(installed.packages())){
+      return(textclean::replace_number(string))
+    }
+    else{
+      return(gsub("[0-9]", 'X', string))
+    }
   }
   if(parallel == F){
     titles = as.character(title_vec) %>%
@@ -235,7 +243,7 @@ Pretreatment = function(title_vec, stem = TRUE, lower = TRUE, parallel = F)
       unlist() %>%
       lapply(Num_Al_Sep) %>%
       unlist() %>%
-      lapply(replace_number) %>%
+      lapply(replace_number_conditional) %>%
       unlist()
     if(stem == TRUE){
       titles = titles %>%
@@ -256,7 +264,7 @@ Pretreatment = function(title_vec, stem = TRUE, lower = TRUE, parallel = F)
       unlist() %>%
       mclapply(Num_Al_Sep, mc.cores = numcore) %>%
       unlist() %>%
-      mclapply(replace_number, mc.cores = numcore) %>%
+      mclapply(replace_number_conditional, mc.cores = numcore) %>%
       unlist()
     if(stem == TRUE){
       titles = titles %>%

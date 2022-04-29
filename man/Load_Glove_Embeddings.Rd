@@ -27,5 +27,5 @@ Load_Glove_Embeddings(path = 'glove.42B.300d.txt', d = 300)
 \examples{
 #This code only works if you have the 5g file found here: <https://nlp.stanford.edu/projects/glove/>
 
-\donttest{emb = Load_Glove_Embeddings()}
+\dontrun{emb = Load_Glove_Embeddings()}
 }

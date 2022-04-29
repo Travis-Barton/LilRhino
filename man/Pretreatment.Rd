@@ -13,7 +13,7 @@ This function goes through a number of pretreatment steps in preparation for vec
 5. Words are lowercased (optinal).
 }
 \usage{
-Pretreatment(title_vec, stem = TRUE, lower = TRUE, parallel = F)
+Pretreatment(title_vec, stem = TRUE, lower = TRUE, parallel = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,13 +42,9 @@ Travis Barton
 }
 
 \examples{
-if(!('textclean' \%in\% sessionInfo()$otherPkgs || 'tm' \%in\% sessionInfo()$otherPkgs))
-{
-  #if(.Platform$OS.type != "unix"){install.packages('SnowballC')}
-  library(textclean)
-  library(tm)
-}
+\dontrun{ # for some reason it takes longer than 5 seconds on CRAN's computers
 test_vec = c('This is a test', 'Ahoy!', 'my battle-ship is on... b6!')
 res = Pretreatment(test_vec)
 print(res)
+}
 }
